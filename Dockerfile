@@ -13,12 +13,11 @@ COPY visual-app/package.json visual-app/package-lock.json visual-app/
 RUN cd visual-app; npm install
 
 RUN mkdir server
-COPY server/package.json server/
-#server/package-lock.json
+COPY server/package.json server/package-lock.json server/
 RUN cd server; npm install
 
 COPY visual-app visual-app
-RUN cd visual-app; `npm bin`/ng build -bh /
+RUN cd visual-app; `npm bin`/ng build
 
 COPY server server
 RUN cd server; npm run build
